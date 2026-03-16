@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RavenShelf</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header>
+<h1>📚 RavenShelf</h1>
+<p>Your reading library, visualized.</p>
+</header>
+
+<div class="dashboard">
+
+<div class="card">
+<h3>Total Books</h3>
+<div id="totalBooks">0</div>
+</div>
+
+<div class="card">
+<h3>Books Read</h3>
+<div id="booksRead">0</div>
+</div>
+
+<div class="card">
+<h3>Average Rating</h3>
+<div id="avgRating">0</div>
+</div>
+
+</div>
+
+<section class="charts">
+
+<div class="chart-card">
+<h3>Genre Breakdown</h3>
+<canvas id="genreChart"></canvas>
+</div>
+
+<div class="chart-card">
+<h3>Books Read Over Time</h3>
+<canvas id="timeChart"></canvas>
+</div>
+
+</section>
+
+<section>
+
+<h2>Add Book</h2>
+
+<input id="title" placeholder="Title">
+<input id="author" placeholder="Author">
+
+<select id="status">
+<option value="read">Read</option>
+<option value="reading">Reading</option>
+<option value="want">Want</option>
+</select>
+
+<input id="rating" type="number" min="1" max="5" placeholder="Rating">
+
+<input id="tags" placeholder="Genres / Tags (comma separated)">
+
+<textarea id="notes" placeholder="Notes"></textarea>
+
+<button onclick="addBook()">Add Book</button>
+
+</section>
+
+<section>
+
+<h2>Your Library</h2>
+
+<input id="search" placeholder="Search..." oninput="render()">
+
+<div id="library"></div>
+
+</section>
+
+<script src="storage.js"></script>
+<script src="charts.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
