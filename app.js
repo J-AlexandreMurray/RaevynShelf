@@ -1,3 +1,5 @@
+fetch(`/.netlify/functions/fetch-ao3?url=${encodeURIComponent(url)}`)
+
 
 function addBook(){
 
@@ -23,6 +25,8 @@ clearForm();
 render();
 
 }
+
+
 
 function deleteBook(id){
 
