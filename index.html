@@ -1,100 +1,133 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>ArchRaven Library</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArchRaven Library</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EBPR3EKGDH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBPR3EKGDH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EBPR3EKGDH');
+  </script>
 
-  gtag('config', 'G-EBPR3EKGDH');
-</script>
-
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <header class="hero">
+    <div>
+      <h1>ArchRaven Library</h1>
+      <p class="subtitle">Track your reading patterns, words read, tags, and AO3 imports in one place.</p>
+    </div>
+  </header>
 
-<header>
-<h1>📚 ArchRaven Library</h1>
-<p>Your reading library, visualized.</p>
-</header>
+  <section class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Total Books</div>
+      <div class="stat-value" id="totalBooks">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Books Read</div>
+      <div class="stat-value" id="booksRead">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Average Rating</div>
+      <div class="stat-value" id="avgRating">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Total Words Read</div>
+      <div class="stat-value" id="totalWords">0</div>
+    </div>
+  </section>
 
-<div class="dashboard">
+  <section class="panel">
+    <h2>Import from AO3</h2>
+    <div class="inline-group">
+      <input id="ao3url" placeholder="Paste AO3 work link" />
+      <button id="importButton" type="button">Import AO3</button>
+    </div>
+    <p class="hint">Imports title, author, word count, and tags from a single AO3 work page.</p>
+  </section>
 
-<div class="card">
-<h3>Total Books</h3>
-<div id="totalBooks">0</div>
-</div>
+  <section class="panel">
+    <h2>Add Entry</h2>
+    <form id="bookForm">
+      <div class="form-grid">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" placeholder="Title" />
+        </div>
+        <div>
+          <label for="author">Author</label>
+          <input id="author" placeholder="Author" />
+        </div>
+        <div>
+          <label for="status">Status</label>
+          <select id="status">
+            <option value="reading">Reading</option>
+            <option value="read">Read</option>
+            <option value="planned">Planned</option>
+          </select>
+        </div>
+        <div>
+          <label for="rating">Rating</label>
+          <input id="rating" type="number" min="0" max="5" step="1" placeholder="0-5" />
+        </div>
+        <div>
+          <label for="wordcount">Word Count</label>
+          <input id="wordcount" placeholder="Word Count" />
+        </div>
+        <div>
+          <label for="tags">Tags</label>
+          <input id="tags" placeholder="Tags, comma separated" />
+        </div>
+      </div>
 
-<div class="card">
-<h3>Books Read</h3>
-<div id="booksRead">0</div>
-</div>
+      <label for="notes">Notes</label>
+      <textarea id="notes" rows="4" placeholder="Notes"></textarea>
 
-<div class="card">
-<h3>Average Rating</h3>
-<div id="avgRating">0</div>
-</div>
+      <div class="action-row">
+        <button type="submit">Add Book</button>
+        <button type="button" id="exportButton" class="secondary">Export Library</button>
+        <label for="importFile" class="file-label">Import Library</label>
+        <input id="importFile" type="file" accept="application/json" hidden />
+      </div>
+    </form>
+  </section>
 
-</div>
+  <section class="charts-grid">
+    <div class="panel chart-panel">
+      <h2>Status Breakdown</h2>
+      <canvas id="statusChart"></canvas>
+    </div>
+    <div class="panel chart-panel">
+      <h2>Rating Breakdown</h2>
+      <canvas id="ratingChart"></canvas>
+    </div>
+    <div class="panel chart-panel">
+      <h2>Top Tags</h2>
+      <canvas id="tagChart"></canvas>
+    </div>
+    <div class="panel chart-panel">
+      <h2>Last 14 Days Intake</h2>
+      <canvas id="recentChart"></canvas>
+    </div>
+  </section>
 
-<section class="charts">
+  <section class="panel">
+    <div class="library-header">
+      <h2>Your Library</h2>
+      <input id="search" placeholder="Search by title, author, or tag" />
+    </div>
+    <div id="library" class="library-list"></div>
+  </section>
 
-<div class="chart-card">
-<h3>Genre Breakdown</h3>
-<canvas id="genreChart"></canvas>
-</div>
-
-<div class="chart-card">
-<h3>Books Read Over Time</h3>
-<canvas id="timeChart"></canvas>
-</div>
-
-</section>
-
-<section>
-
-<h2>Add Book</h2>
-
-<input id="title" placeholder="Title">
-<input id="author" placeholder="Author">
-
-<select id="status">
-<option value="read">Read</option>
-<option value="reading">Reading</option>
-<option value="want">Want</option>
-</select>
-
-<input id="rating" type="number" min="1" max="5" placeholder="Rating">
-
-<input id="tags" placeholder="Genres / Tags (comma separated)">
-
-<textarea id="notes" placeholder="Notes"></textarea>
-
-<button onclick="addBook()">Add Book</button>
-
-</section>
-
-<section>
-
-<h2>Your Library</h2>
-
-<input id="search" placeholder="Search..." oninput="render()">
-
-<div id="library"></div>
-
-</section>
-
-<script src="storage.js"></script>
-<script src="charts.js"></script>
-<script src="app.js"></script>
-
+  <script src="storage.js"></script>
+  <script src="charts.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
