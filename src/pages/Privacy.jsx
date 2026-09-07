@@ -13,6 +13,6 @@ export default function Privacy() {
     <p>Before public launch, production analytics must be configured to avoid sending reading titles, AO3 URLs, stat-card tokens, email addresses, or other user-specific library data to analytics services.</p>
     <h2>Deleting your account</h2>
     <p>You can permanently delete your RaevynTide account from Settings. The application database rows owned by that account are configured to cascade-delete with the authentication account.</p>
-    <p className="muted">This page is product privacy copy, not a substitute for jurisdiction-specific legal review before a public launch.</p>
+    
   </main>;
 }
