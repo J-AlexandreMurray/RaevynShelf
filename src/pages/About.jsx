@@ -26,5 +26,4 @@ export default function About() {
   </a>
 )}
 </main>
-);
 }
