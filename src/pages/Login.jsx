@@ -14,7 +14,7 @@ export default function Login() {
 
   return <main className="landing">
     <nav className="landing-nav">
-      <strong>✦ RaevynShelf</strong>
+      <strong>✦ RaevynTide Library</strong>
       <div><Link to="/about">About</Link><Link to="/privacy">Privacy</Link></div>
     </nav>
     <section className="landing-hero">
@@ -26,11 +26,11 @@ export default function Login() {
         <small>Your login identity is separate from the name you choose for your shelf.</small>
       </div>
       <div className="landing-card-demo">
-        <span>✦ RAEVYNSHELF</span>
-        <h2>Midnight Shelf</h2>
+        <span>✦ RAEVYNTIDE</span>
+        <h2>Midnight Library</h2>
         <div><strong>247</strong><small>works</small></div>
         <div><strong>1.8M</strong><small>words</small></div>
-        <p>Share the stats. Keep the shelf private.</p>
+        <p>Share the stats. Keep the library private.</p>
       </div>
     </section>
     <section className="landing-features">
