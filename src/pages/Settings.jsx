@@ -32,7 +32,7 @@ export default function Settings({ user }) {
       loadWorks(user?.id),
       getActiveStatCard(user?.id)
     ]).then(([library, works, activeCard]) => {
-      setName(library?.display_name || "My RaevynShelf");
+      setName(library?.display_name || "My RaevynTide Library");
       setStats(calculateStats(works));
       setCard(activeCard);
     }).catch(e => setMessage(e.message));
@@ -70,7 +70,7 @@ export default function Settings({ user }) {
     try {
       await disableStatCard(user?.id, card.id);
       setCard(null);
-      setMessage("Public stat card disabled. Your private shelf is unchanged.");
+      setMessage("Public stat card disabled. Your private library is unchanged.");
     } catch (e) {
       setMessage(e.message);
     }
@@ -87,8 +87,8 @@ export default function Settings({ user }) {
     if (!shareUrl) return;
     if (navigator.share) {
       await navigator.share({
-        title: `${name} · RaevynShelf`,
-        text: "My AO3 reading stats on RaevynShelf",
+        title: `${name} · RaevynTide`,
+        text: "My AO3 reading stats on RaevynTide",
         url: shareUrl
       });
     } else {
@@ -98,7 +98,7 @@ export default function Settings({ user }) {
 
   const deleteAccount = async () => {
     const confirmed = window.confirm(
-      "Permanently delete your RaevynShelf account, private shelf, and public stat card? This cannot be undone."
+      "Permanently delete your RaevynTide account, private library, and public stat card? This cannot be undone."
     );
     if (!confirmed) return;
     const typed = window.prompt('Type DELETE to confirm permanent account deletion.');
@@ -140,7 +140,7 @@ export default function Settings({ user }) {
         <h2>Name your shelf</h2>
         <p className="muted">Use a fandom handle, a shelf name, or anything else. It does not need to match your Google or AO3 identity.</p>
         <form onSubmit={saveName} className="inline-form">
-          <input value={name} onChange={e => setName(e.target.value)} placeholder="Mara's Midnight Shelf" />
+          <input value={name} onChange={e => setName(e.target.value)} placeholder="Mary's Midnight Library" />
           <button className="primary">{saved ? "Saved ✓" : "Save name"}</button>
         </form>
       </section>
@@ -175,7 +175,7 @@ export default function Settings({ user }) {
         </div>
 
         <div className="card-preview">
-          <StatCard displayName={name || "My RaevynShelf"} stats={card?.statistics_snapshot || stats} />
+          <StatCard displayName={name || "My RaevynTide"} stats={card?.statistics_snapshot || stats} />
         </div>
       </section>
 
@@ -187,8 +187,8 @@ export default function Settings({ user }) {
 
       <section className="panel danger-zone">
         <span className="eyebrow">ACCOUNT</span>
-        <h2>Delete RaevynShelf account</h2>
-        <p className="muted">This permanently removes your account and the RaevynShelf data attached to it, including your private shelf and stat cards.</p>
+        <h2>Delete RaevynTide account</h2>
+        <p className="muted">This permanently removes your account and the RaevynTide data attached to it, including your private shelf and stat cards.</p>
         <button className="danger-button" onClick={deleteAccount} disabled={deleting}>
           {deleting ? "Deleting…" : "Delete my account"}
         </button>
