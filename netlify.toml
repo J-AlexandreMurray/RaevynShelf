@@ -1,2 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
 [functions]
   directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/ao3-work"
+  to = "/.netlify/functions/ao3-work"
+  status = 200
+
+[[redirects]]
+  from = "/api/delete-account"
+  to = "/.netlify/functions/delete-account"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
