@@ -23,7 +23,7 @@ export default function PublicCard({ token }) {
     return (
       <main className="public-page">
         <div className="public-message">
-          <span className="eyebrow">RAEVYNSHELF</span>
+          <span className="eyebrow">RaevynTide</span>
           <h1>That stat card isn't available.</h1>
           <p>It may have been disabled, refreshed with a new link, or the URL may be incorrect.</p>
         </div>
@@ -32,7 +32,7 @@ export default function PublicCard({ token }) {
   }
 
   if (card === undefined) {
-    return <main className="public-page"><div className="public-message">Loading RaevynShelf…</div></main>;
+    return <main className="public-page"><div className="public-message">Loading RaevynTide…</div></main>;
   }
 
   return (
@@ -43,7 +43,7 @@ export default function PublicCard({ token }) {
           stats={card.statistics_snapshot}
           theme={card.theme}
         />
-        <p className="public-brand">RaevynShelf · private AO3 reading companion</p>
+        <p className="public-brand">RaevynTide · private AO3 reading companion</p>
       </div>
     </main>
   );
