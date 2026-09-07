@@ -25,7 +25,7 @@ export default function App() {
     return () => data.subscription.unsubscribe();
   }, []);
 
-  if (session === undefined) return <main className="loading">Loading RaevynShelf…</main>;
+  if (session === undefined) return <main className="loading">Loading RaevynTide…</main>;
 
   return <Routes>
     <Route path="/s/:token" element={<PublicRoute />} />
